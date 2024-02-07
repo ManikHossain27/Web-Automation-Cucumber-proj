@@ -22,7 +22,7 @@ public class Base {
     public Select select;
 
     //Navigate to site url
-    public void navigateURL(String url){
+    public void navigate(String url){
         getDriver().get(url);
     }
 

@@ -50,7 +50,7 @@ public class DriverSetup {
     }
     public static void takeScreenShot(Scenario scenario){
         try {
-            String screenshotName= scenario.getName().replace("", "");
+            String screenshotName= scenario.getName().replace("", "_");
             if(scenario.isFailed()) {
                 scenario.log("this is my failure message");
                 TakesScreenshot ts = (TakesScreenshot)getDriver();
