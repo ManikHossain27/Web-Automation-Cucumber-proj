@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -23,7 +24,15 @@ public class DriverSetup {
 
     public static WebDriver createBrowser(String browserName){
         if (browserName.equalsIgnoreCase("chrome")){
-            return new ChromeDriver();
+            //Save and reuse Login session
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("user-data-dir=C:\\Users\\rjman\\AppData\\Local\\Google\\Chrome\\User Data");
+
+            //for dedicated chrome browse - chrome for testing
+            //options.setBinary("C:\\Users\\rjman\\Downloads\\Programs\\chrome-win64\\chrome.exe");
+            //options.addArguments("user-data-dir=C:\\Users\\rjman\\AppData\\Local\\Google\\Chrome for Testing\\User Data");
+            return new ChromeDriver(options);
+            //return new ChromeDriver();
         }
         else if (browserName.equalsIgnoreCase("firefox")) {
             return new FirefoxDriver();
@@ -48,6 +57,7 @@ public class DriverSetup {
         takeScreenShot(scenario);
         getDriver().quit();
     }
+    //take ScreenShot
     public static void takeScreenShot(Scenario scenario){
         try {
             String screenshotName= scenario.getName().replace("", "_");
